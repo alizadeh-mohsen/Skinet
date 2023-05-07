@@ -40,6 +40,11 @@ namespace Infrastructure.Services
             return await ApplySpecification(specification).ToListAsync();
         }
 
+        public async Task<int> CountAsync(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).CountAsync();
+        }
+        
         private IQueryable<T> ApplySpecification(ISpecification<T> specification)
         {
             var query = context.Set<T>().AsQueryable();

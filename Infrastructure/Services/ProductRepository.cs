@@ -21,7 +21,7 @@ namespace Infrastructure.Services
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
-            return await context.Products
+            return await context.Products.OrderBy(p=>p.Id)
                 .Include(p => p.ProductType)
                 .Include(p => p.ProductBrand)
                 .FirstOrDefaultAsync(p => p.Id == id);
