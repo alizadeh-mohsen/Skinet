@@ -8,9 +8,9 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class ProductTypesController : ControllerBase
     {
-        private readonly IProductTypeRepository repository;
+        private readonly IGenericRepository<ProductType> repository;
 
-        public ProductTypesController(IProductTypeRepository repository)
+        public ProductTypesController(IGenericRepository<ProductType> repository)
         {
             this.repository = repository;
         }
@@ -18,7 +18,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {
-            return Ok(await repository.GetProductTypesAsync());
+            return Ok(await repository.ListAsync());
         }
     }
 }
